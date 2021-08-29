@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+            integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
+            crossorigin="anonymous"
+        />
+        <link rel="stylesheet" href="/css/style.css">
+        <link href="https://fonts.googleapis.com/css2?family=Newsreader:wght@300&display=swap" rel="stylesheet" />
+        
+        <title>Pharmacy Website</title>
+        <style>
+            input.form,select{
+                position: absolute;
+                right: 40%;
+            }
+        </style>
+    </head>
+    <body>
+        <%- include('../particles/navbar') %> <br><br>
+        <hr />
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-2">
+        <a class="btn btn-light dash m-2" href="/sellerDashboard" style="width: 200px;" > new orders</a> <br>  
+        <a class="btn btn-light dash m-2 active" href="/products"  style="width: 200px;"> Products currently listing</a> <br>
+        <a class="btn btn-light dash m-2" href="/paymentsummary" style="width: 200px;">payment summary</a> <br>
+        <a class="btn btn-light dash m-2" href="/sellerorderhistory" style="width: 200px;">order history</a> <br>
+        <a class="btn btn-light dash m-2" style="width: 200px;">Seller Profile</a> 
+       </div>
+       <div class="col-10 px-5">
+           
+        
+           <div class="form" id="edet" style="border: 1px solid black;  max-width: 600px; border-radius: 20px; margin-left: 10%; padding: 5%; " >   
+            <form action="/editProduct/<%= item[0].pname %>" method="POST" >
+                <label for="pname">product name:</label>
+                <input type="text" name="pname" class="form" value="<%= item[0].pname %>"> <br><br>
+                <label for="stock">available stock:</label>
+                <input type="text" name="stock" class="form"value="<%= item[0].stock %>"> <br><br>
+                <label for="price">price:</label>
+                <input type="text" name="price" class="form" value="<%= item[0].price %>"> <br><br>
+                <label for="price">discounted price:</label>
+                <input type="text" name="dprice" class="form" value="<%= item[0].dprice%>"> <br><br>
+                <label for="">category</label>
+                <select name="category" id="" value="<%= item[0].category %>">
+                    <option value="none"  selected >
+                        Select an Option
+                    </option>
+                    <option value="baby_care">baby care</option>
+                    <option value="covid_essentials">covid essentials</option>
+                    <option value="maternity_care">maternity care</option>
+                    <option value="health">health drings and products</option>
+                    <option value="general_medicines">general medicines</option>
+                    <option value="devices">devices</option>
+                </select> <br><br>
+                <label for="description">desription:</label>
+                <input type="text" name="description" class="form"> <br><br>
+                <input type="submit" class="form">
+    
+            </form>
+        </div>  
+        
+           
+       </div>
+    </div>
+            </div>
+        </div>
+        <script
+        src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"
+    ></script>
+    <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
+        crossorigin="anonymous"
+    ></script>
+    <%- include('../particles/footer') %>

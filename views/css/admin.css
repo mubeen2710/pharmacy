@@ -1,0 +1,19 @@
+body {
+    font-family: 'Noto Serif', serif;
+    
+    background-size: 100% ;
+   
+    
+    padding: 25px;
+    font-size: small;
+}
+h2,h3,.navbar-brand {
+    color: rgb(187, 152, 152);
+}
+.card {
+    background: transparent;
+    border: none;
+}
+nav{
+    background-color: rgb(53, 66, 78);;
+}

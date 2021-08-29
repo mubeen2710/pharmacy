@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+            integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
+            crossorigin="anonymous"
+        />
+        <link href="https://fonts.googleapis.com/css2?family=Newsreader:wght@300&display=swap" rel="stylesheet" />
+        <link rel="stylesheet" href="/css/style.css" />
+        <title>Pharmacy Website</title>
+    </head>
+    <body>
+        <%- include('../particles/navbar') %> <br><br>
+        <hr />
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-2">
+        <a class="btn btn-light dash m-2  active" style="width: 200px;" > new orders</a> <br>  
+        <a class="btn btn-light dash m-2" href="/products" style="width: 200px;"> Products currently listing</a> <br>
+        <a class="btn btn-light dash m-2" href="/paymentsummary" style="width: 200px;">payment summary</a> <br>
+        <a class="btn btn-light dash m-2" href="/sellerorderhistory" style="width: 200px;">order history</a> <br>
+        <a class="btn btn-light dash m-2" href="/seller/profile" style="width: 200px;">seller Profile</a> 
+       </div>
+       <div class="col -10">
+        
+            
+         <% item.forEach(function(item){  %>
+            <div class="row m-3">
+         <div class="col-2">
+             <img  width="150px" src="/uploads/<%= item.pimage %>"  />
+         </div>
+             <div class="col-6">
+                 <p > <%= item.pname %></p>
+                <p>From <%= item.bname %> <br> address:  <%= item.add1%> <br> <%= item.add2%> , <%= item.add3%> <br> email:  <%= item.email %></p>
+            </div>
+                <div class="col-2">
+                    <form action="/sellerDashboard/<%= item.id %>" method="POST">
+                        <input class="btn btn-outline-danger" type="submit" value="mark as shipped">
+                    </form>
+                
+            </div> 
+              
+            </div>
+         <br>
+         <% }) %>
+            </div>
+         
+            </div>
+            </div>
+            </div>
+        <script
+        src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"
+    ></script>
+    <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
+        crossorigin="anonymous"
+    ></script>
+    <%- include('../particles/footer') %>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+            integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
+            crossorigin="anonymous"
+        />
+        <link rel="stylesheet" href="/css/style.css">
+        <link href="https://fonts.googleapis.com/css2?family=Newsreader:wght@300&display=swap" rel="stylesheet" />
+        
+        <title>Document</title>
+    </head>
+    <body>
+        <%- include('particles/navbar') %>
+        <br><br>
+        <hr />
+        <div class="container mt-5">
+            <div class="row">
+                <div class="col ">
+        <img src="/uploads/<%= item[0].pimage %>" style="height: 200px; width: 200px;">
+    </div>
+        <div class="col col-lg-8">
+            <h4><%= item[0].pname %></h4> 
+           
+            <p>stock left: <%= item[0].stock %></p>
+            <% if(item[0].dprice === item[0].price){ %>
+            <p>Price:RS  <%= item[0].price %></p>
+            <% }else{ %>
+            <p>Price:RS <span><del style="color: red;"><%= item[0].price %></del></span>  <%= item[0].dprice %><span style="color: green;"> <%= Math.floor(((item[0].price-item[0].dprice)/item[0].price)*100) %>% discount</span></p>
+            <% } %>
+            <form action="/cart/<%= item[0].pname %>" style="display: inline;" method="POST">
+                <input type="submit" class="btn btn-outline-dark" value="add to cart">
+            </form>
+            <% if(typeof l ==='undefined'){ %>
+                <a href="/login/<%= item[0].pname %>" class="btn btn-outline-dark">&nbsp;&nbsp;buy&nbsp;&nbsp;</a>
+                    <% }else{ %>
+            <a href="/detail/<%= item[0].pname %>/buy" class="btn btn-outline-dark">&nbsp;&nbsp;buy&nbsp;&nbsp;</a>
+            <% } %>
+    </div>
+    </div>
+    <div class="row">
+        <div class="col-4"> <h2>Similar Products:-</h2> 
+       
+        </div>
+        
+        <% sim.forEach(function(sim){ %>
+               
+            <% if(sim.stock<=0){ %>
+                <div class="col col-md-3 d-flex justify-content-center">
+                <div href="" class="product m-5 p-2" >
+                    <img src="/uploads/<%= sim.pimage %>" alt="..." style="height: 180px; width: 180px; border-radius: 50px;" />
+                        
+                        <p style="font-size: small;"  > <%= sim.pname %></p>
+                        <p>price:<%= sim.price %></p>
+                       <center><p style="color: red;">out of stock</p></center> 
+                </div>
+                </div>
+                <% }else{ %>
+                    <div class="col col-md-3 d-flex justify-content-center">
+                    <a href="/detail/<%= sim.pname %>">
+                        
+            <div href="" class="product m-5 p-2" >
+                <img src="/uploads/<%= sim.pimage %>" alt="..." style="height: 180px; width: 180px; border-radius: 50px;" />
+                    
+                    <p style="font-size: small;"  > <%= sim.pname %></p>
+                    <p>price:<%= sim.price %></p>
+            </div>
+        </a>
+        </div>
+        <% }}) %>
+    </div>
+    </div>
+    <%- include('particles/footer') %>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+            integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
+            crossorigin="anonymous"
+        />
+        <link rel="preconnect" href="https://fonts.gstatic.com" />
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@700&display=swap" rel="stylesheet" />
+        <link rel="stylesheet" href="/css/admin.css" />
+        <title>Document</title>
+        <style>
+            table,th,td{
+                padding-left: 10px;
+                padding-right: 10px;
+                border: 1px solid black;
+            }
+            input{
+                color: white;
+                background-color: rgb(187, 152, 152);
+                border: none;
+                padding-top: 5px;
+                padding-bottom: 5px;
+                padding-left: 10px;
+                padding-right: 10px;
+                border-radius: 10px;
+            }
+            input:hover{
+                opacity: 50%;
+            }
+        </style>
+    </head>
+    <body>
+        <<%- include("../particles/adminheader") %>
+
+        <div class="btn-group">
+            <a class="btn btn-light dash m-2" href="/admin" style="width: 300px"> Currently Listing Products</a> <br />
+            <a class="btn btn-light dash m-2 "  style="width: 200px">Buyers</a> <br />
+
+            <a class="btn btn-light dash m-2" href="/sellers" style="width: 200px">Sellers</a> <br />
+            <a class="btn btn-light dash m-2" href="/orders" style="width: 200px">orders</a> <br />
+            <a class="btn btn-light dash m-2 active" href="/transaction" style="width: 200px">Transactions</a>
+        </div>
+        <div class="container">
+            <div class="row">
+            <div class="col-6">
+                <center><h2>Transactions</h2></center>
+        <table>
+            <tr>
+            <th>from</th>
+            <th>amount</th>
+            <th>receiver</th>
+            <th>at</th>
+            </tr>
+            <% item.forEach(function(item) { %>
+            <tr>
+                <td><%= item.givener %></td>
+                <td><%= item.amount %></td>
+                <td><%= item.taker %></td>
+                <td><%= item.attime.toString().slice(0, 24) %> </td>
+
+            </tr>
+            <%})%>
+        </table>
+        </div>
+        <div class="col-6">
+            <center><h2>Seller balances</h2></center>
+            
+                <% sval.forEach(function(val) { %>
+                 <div class="row">
+                     <div class="col">
+                   sellername: <%= val.sname %> <br>
+                    balance: <%= val.bal %>
+                </div>
+                <% if(val.bal!==0){ %>
+                <div class="col">
+                <form action="/transaction/<%= val.sname %>/<%= val.bal %>" method="POST">
+                    <input type="submit" value="release money">
+                    </form>
+                    <br><br>
+                    
+                </div>
+                <% } %>
+            </div>
+                <%})%>
+           
+        </div>
+    </div>
+    </div>
+        <script
+            src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+            crossorigin="anonymous"
+        ></script>
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
+            crossorigin="anonymous"
+        ></script>
+    </body>
+</html>
