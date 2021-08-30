@@ -51,7 +51,7 @@ app.use(
 );
 
 //started the server on port 4000
-app.listen(3020, () => {
+app.listen(process.env.PORT, () => {
     console.log("Server started ar port 6000..");
 });
 
