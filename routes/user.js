@@ -46,11 +46,11 @@ let routes = (app) => {
         res.redirect("/");
     });
     app.get("/", (req, res) => {
-        let sql = "SELECT * FROM items";
-        let qry = connection.query(sql, (err, rows) => {
-            if (err) throw err;
-            res.render("pharm", { item: rows, l: req.session.prof });
-        });
+        // let sql = "SELECT * FROM items";
+        // let qry = connection.query(sql, (err, rows) => {
+        //     if (err) throw err;
+            res.render("pharm");
+        // });
     });
 
     app.get("/signup", (req, res) => {
