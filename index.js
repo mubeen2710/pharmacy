@@ -9,15 +9,12 @@ const initRoutes = require("./routes/user");
 const adminRoutes = require("./routes/admin");
 const sellerRoutes = require("./routes/seller");
 const productsRoutes = require("./routes/products");
-const connection=require("./db/connection")
+const connection =require("./db/connection")
 
 let app = express();
 app.use(express.static(__dirname + "/views"));
 
-connection.connect(function (err) {
-    if (err) throw err;
-    return console.log("Connected to DB...");
-});
+connection.connect();
 
 
 
