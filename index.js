@@ -11,7 +11,7 @@ const initRoutes = require("./routes/user");
 const adminRoutes = require("./routes/admin");
 const sellerRoutes = require("./routes/seller");
 const productsRoutes = require("./routes/products");
-var MySQLStore = require("express-mysql-session")(session);
+// var MySQLStore = require("express-mysql-session")(session);
 // const connection=require("./db/connection")
 
 let app = express();
