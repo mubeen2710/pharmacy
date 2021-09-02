@@ -14,12 +14,11 @@ const connection=require("./db/connection")
 let app = express();
 app.use(express.static(__dirname + "/views"));
 
+connection.connect(function (err) {
+    if (err) throw err;
+    return console.log("Connected to DB...");
+});
 
-// connection.connect(function (err) {
-//     if (err) throw err;
-//     return console.log("Connected to DB...");
-// });
-// global.db = connection;
 
 
 // var sessionStore = new MySQLStore(
