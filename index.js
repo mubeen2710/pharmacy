@@ -52,7 +52,7 @@ app.use(express.static(__dirname + "/views"));
 //  );
 
 //started the server on port 4000
-app.listen(3030, () => {
+app.listen(process.env.PORT, () => {
     console.log("Server started ar port 6000..");
 });
 
