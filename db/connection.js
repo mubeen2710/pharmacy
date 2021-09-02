@@ -1,9 +1,11 @@
-const mysql = require("mysql");
- let connection = mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    port: 3306,
-    password: "9809177092mM?",
-    database: "classicmodels",
-});
+const {Pool, Client } = require('pg');
+
+ let connection =new Pool({
+ 	  user: 'postgres',
+ 	  host: 'localhost',
+ 	  database: 'pharmacy',
+ 	  password: '9446546666mm',
+ 	  port: 5432,
+ });
+
 module.exports = connection;
