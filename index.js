@@ -1,5 +1,5 @@
 const path = require("path");
-const mysql = require("mysql");
+// const mysql = require("mysql");
 const express = require("express");
 const bodyparser = require("body-parser");
 const ejs = require("ejs");
