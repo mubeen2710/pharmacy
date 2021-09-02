@@ -14,9 +14,14 @@ const connection =require("./db/connection")
 let app = express();
 app.use(express.static(__dirname + "/views"));
 
-// connection.connect();
+connection.connect();
 
-
+app.use(session({
+    secret: 'keyboard cat',
+    resave: false,
+    saveUninitialized: true,
+    cookie: { maxAge: 60000 }
+  }))
 
 // var sessionStore = new MySQLStore(
 //      {
