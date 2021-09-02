@@ -1,28 +1,25 @@
 const path = require("path");
-// const mysql = require("mysql");
 const express = require("express");
 const bodyparser = require("body-parser");
 const ejs = require("ejs");
 const { get } = require("http");
 const buyerRoutes = require("./routes/buyer");
-// routes = require('./routes')
 var session = require("express-session");
 const initRoutes = require("./routes/user");
 const adminRoutes = require("./routes/admin");
 const sellerRoutes = require("./routes/seller");
 const productsRoutes = require("./routes/products");
-// var MySQLStore = require("express-mysql-session")(session);
-// const connection=require("./db/connection")
+const connection=require("./db/connection")
 
 let app = express();
 app.use(express.static(__dirname + "/views"));
 
 
-// connection.connect(function (err) {
-//     if (err) throw err;
-//     return console.log("Connected to DB...");
-// });
-// global.db = connection;
+connection.connect(function (err) {
+    if (err) throw err;
+    return console.log("Connected to DB...");
+});
+global.db = connection;
 
 
 // var sessionStore = new MySQLStore(
