@@ -3,7 +3,7 @@ const router = express.Router();
 const connection = require("../db/connection");
 const path = require("path");
 const session = require("express-session");
-const MySQLStore = require("express-mysql-session")(session);
+// const MySQLStore = require("express-mysql-session")(session);
 const upload = require("../db/multer");
 
 let l = false;
