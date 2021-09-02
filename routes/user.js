@@ -60,38 +60,38 @@ let routes = (app) => {
         let data;
         if (typeof req.body.usname !== "undefined") {
             
-            data = {
-                fname: req.body.fname,
-                lname: req.body.lname,
-                email: req.body.email,
-                _type: "buyer",
-                phone: req.body.phone,
-                add1: req.body.add1,
-                add2: req.body.add2,
-                add3: req.body.add3,
-                pin: req.body.pin,
-                uname: req.body.usname,
-                pass: req.body.pass,
-                prof: req.file.filename,
-            };
+            data = [
+                req.body.usname,
+                req.body.fname,
+                req.body.lname,
+                req.body.email,
+                req.body.phone,
+                "buyer",
+                 req.body.add1,
+                req.body.add2,
+                req.body.add3,
+                req.body.pass,
+                req.file.filename,
+                req.body.pin
+            ];
         } else {
             
-            data = {
-                fname: req.body.cfname,
-                lname: req.body.clname,
-                email: req.body.cemail,
-                _type: "seller",
-                phone: req.body.cphone,
-                add1: req.body.cadd1,
-                add2: req.body.cadd2,
-                add3: req.body.cadd3,
-                pin: req.body.pin,
-                uname: req.body.cuname,
-                pass: req.body.cpass,
-                prof: req.file.filename,
-            };
+            data = [
+                req.body.cuname,
+                req.body.cfname,
+                req.body.clname,
+                req.body.cemail,
+                req.body.cphone,
+                "seller",
+                req.body.cadd1,
+                req.body.cadd2,
+                req.body.cadd3,
+               req.body.cpass,
+                req.file.filename,
+                 req.body.pin,
+            ];
         }
-        let sql = "INSERT INTO accounts SET ?";
+        let sql = "INSERT INTO accounts(uname, fname, lname, email, phone, _type, add1, add2, add3, pass, prof, pin) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING *";
         let qry = connection.query(sql, data, (err, rows) => {
             if (err) throw err;
             res.redirect("/login");
