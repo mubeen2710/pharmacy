@@ -15,11 +15,11 @@ let app = express();
 app.use(express.static(__dirname + "/views"));
 
 
-connection.connect(function (err) {
-    if (err) throw err;
-    return console.log("Connected to DB...");
-});
-global.db = connection;
+// connection.connect(function (err) {
+//     if (err) throw err;
+//     return console.log("Connected to DB...");
+// });
+// global.db = connection;
 
 
 // var sessionStore = new MySQLStore(
