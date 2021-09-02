@@ -49,7 +49,7 @@ let routes = (app) => {
         // let sql = "SELECT * FROM items";
         // let qry = connection.query(sql, (err, rows) => {
         //     if (err) throw err;
-            res.render("pharm");
+            res.render("pharm",{item:[]});
         // });
     });
 
