@@ -16,12 +16,16 @@ app.use(express.static(__dirname + "/views"));
 
 connection.connect();
 
-app.use(session({
-    secret: 'keyboard cat',
-    resave: false,
-    saveUninitialized: true,
-    cookie: { maxAge: 60000 }
-  }))
+app.use(
+    session({
+             key: "session_cookie_name",
+         secret: "session_cookie_secret",
+         store: sessionStore,
+         resave: false,
+         saveUninitialized: false,
+      })
+  );
+ 
 
 // var sessionStore = new MySQLStore(
 //      {
