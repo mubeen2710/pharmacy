@@ -25,31 +25,31 @@ app.use(express.static(__dirname + "/views"));
 // global.db = connection;
 
 
-var sessionStore = new MySQLStore(
-     {
-         expiration: 10000000,
-         createDatabaseTable: true,
-         schema: {
-            tableName: "sessions",
-             columnNames: {
-                 session_id: "session_id",
-                 expires: "expires",
-                 data: "data",
-             },
-         },
-     },
-     connection
- );
+// var sessionStore = new MySQLStore(
+//      {
+//          expiration: 10000000,
+//          createDatabaseTable: true,
+//          schema: {
+//             tableName: "sessions",
+//              columnNames: {
+//                  session_id: "session_id",
+//                  expires: "expires",
+//                  data: "data",
+//              },
+//          },
+//      },
+//      connection
+//  );
 
- app.use(
-   session({
-            key: "session_cookie_name",
-        secret: "session_cookie_secret",
-        store: sessionStore,
-        resave: false,
-        saveUninitialized: false,
-     })
- );
+//  app.use(
+//    session({
+//             key: "session_cookie_name",
+//         secret: "session_cookie_secret",
+//         store: sessionStore,
+//         resave: false,
+//         saveUninitialized: false,
+//      })
+//  );
 
 //started the server on port 4000
 app.listen(3030, () => {
