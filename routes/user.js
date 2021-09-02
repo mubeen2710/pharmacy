@@ -16,7 +16,7 @@ let routes = (app) => {
         var username = req.body.uname;
         var password = req.body.pass;
         if (username && password) {
-            connection.query("SELECT * FROM accounts WHERE uname = ? AND pass = ?", [username, password], function (error, results) {
+            connection.query("SELECT * FROM accounts WHERE uname = $1 AND pass = $2", [username, password], function (error, results) {
                 if (error) throw error;
                 if (results.length > 0) {
                     req.session.userinfo = username;
@@ -56,7 +56,7 @@ let routes = (app) => {
     app.get("/signup", (req, res) => {
         res.render("signup", { message: "" });
     });
-    app.post("/signup", upload.single("profile"), (req, res) => {
+    app.post("/signup", (req, res) => {
         let data;
         if (typeof req.body.usname !== "undefined") {
             
@@ -71,7 +71,7 @@ let routes = (app) => {
                 req.body.add2,
                 req.body.add3,
                 req.body.pass,
-                req.file.filename,
+                
                 req.body.pin
             ];
         } else {
@@ -87,11 +87,11 @@ let routes = (app) => {
                 req.body.cadd2,
                 req.body.cadd3,
                req.body.cpass,
-                req.file.filename,
+                
                  req.body.pin,
             ];
         }
-        let sql = "INSERT INTO accounts(uname, fname, lname, email, phone, _type, add1, add2, add3, pass, prof, pin) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING *";
+        let sql = "INSERT INTO accounts(uname, fname, lname, email, phone, _type, add1, add2, add3, pass, pin) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING *";
         let qry = connection.query(sql, data, (err, rows) => {
             if (err) throw err;
             res.redirect("/login");
