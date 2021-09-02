@@ -14,7 +14,7 @@ const connection =require("./db/connection")
 let app = express();
 app.use(express.static(__dirname + "/views"));
 
-connection.connect();
+// connection.connect();
 
 
 
