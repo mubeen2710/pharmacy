@@ -17,7 +17,7 @@ let routes = (app) => {
         var password = req.body.pass;
         if (username && password) {
             connection.query("SELECT * FROM accounts WHERE (uname = $1) AND (pass = $2)", [username, password], function (error, results) {
-                if (error) throw error;
+                if (error) console.log(error.stack);
                 if (results.length > 0) {
                     req.session.userinfo = username;
                     req.session._type = results[0]._type;
