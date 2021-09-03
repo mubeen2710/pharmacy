@@ -5,14 +5,14 @@ const path = require("path");
 const session = require("express-session");
 // const MySQLStore = require("express-mysql-session")(session);
 const upload = require("../db/multer");
-connection.connect();
+
 let l = false;
 let routes = (app) => {
     app.get("/login", (req, res) => {
         res.render("login", { pn: req.params.pname });
     });
     app.post("/login", function async (req, res) {
-        
+        connection.connect();
         var username = req.body.uname;
         var password = req.body.pass;
         if (username && password) {
@@ -38,6 +38,7 @@ let routes = (app) => {
 			res.render("login", { pn: req.params.pname,message:message });
             res.end();
         }
+        connection.end();
     });
     app.get("/logout", (req, res) => {
         req.session.destroy((err) => {
