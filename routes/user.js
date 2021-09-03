@@ -5,7 +5,7 @@ const path = require("path");
 const session = require("express-session");
 // const MySQLStore = require("express-mysql-session")(session);
 const upload = require("../db/multer");
-
+connection.connect();
 let l = false;
 let routes = (app) => {
     app.get("/login", (req, res) => {
