@@ -11,12 +11,12 @@ let routes = (app) => {
     app.get("/login", (req, res) => {
         res.render("login", { pn: req.params.pname });
     });
-    app.post("/login", function (req, res) {
+    app.post("/login", function async (req, res) {
         
         var username = req.body.uname;
         var password = req.body.pass;
         if (username && password) {
-            connection.query("SELECT * FROM accounts WHERE (uname = $1) AND (pass = $2)", [username, password], function (error, results) {
+            await connection.query("SELECT * FROM accounts WHERE (uname = $1) AND (pass = $2)", [username, password], function (error, results) {
                 if (error) console.log(error.stack);
                 if (results.length > 0) {
                     req.session.userinfo = username;

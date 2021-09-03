@@ -15,7 +15,7 @@ let app = express();
 app.use(express.static(__dirname + "/views"));
 
 connection.connect();
-const server = http.createServer(app);
+// const server = http.createServer(app);
 
 app.use(session({
     secret: 'keyboard cat',
